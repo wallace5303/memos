@@ -2,6 +2,8 @@ module github.com/usememos/memos
 
 go 1.21
 
+toolchain go1.21.6
+
 require (
 	github.com/aws/aws-sdk-go-v2 v1.24.1
 	github.com/aws/aws-sdk-go-v2/config v1.26.6

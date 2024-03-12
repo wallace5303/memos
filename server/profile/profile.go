@@ -40,6 +40,7 @@ func (p *Profile) IsDev() bool {
 
 func checkDataDir(dataDir string) (string, error) {
 	// Convert to absolute path if relative path is supplied.
+	println("os.Args:", os.Args)
 	if !filepath.IsAbs(dataDir) {
 		relativeDir := filepath.Join(filepath.Dir(os.Args[0]), dataDir)
 		absDir, err := filepath.Abs(relativeDir)
@@ -71,9 +72,11 @@ func GetProfile() (*Profile, error) {
 		profile.Mode = "demo"
 	}
 
-	if profile.Mode == "prod" && profile.Data == "" {
+	// [rewrite] 数据目录需要修改
+	if profile.Data == "" {
 		if runtime.GOOS == "windows" {
-			profile.Data = filepath.Join(os.Getenv("ProgramData"), "memos")
+			UserHomeDir, _ := GetUserHomeDir()
+			profile.Data = filepath.Join(UserHomeDir, "memos")
 
 			if _, err := os.Stat(profile.Data); os.IsNotExist(err) {
 				if err := os.MkdirAll(profile.Data, 0770); err != nil {

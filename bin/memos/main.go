@@ -23,14 +23,7 @@ import (
 )
 
 const (
-	greetingBanner = `
-███╗   ███╗███████╗███╗   ███╗ ██████╗ ███████╗
-████╗ ████║██╔════╝████╗ ████║██╔═══██╗██╔════╝
-██╔████╔██║█████╗  ██╔████╔██║██║   ██║███████╗
-██║╚██╔╝██║██╔══╝  ██║╚██╔╝██║██║   ██║╚════██║
-██║ ╚═╝ ██║███████╗██║ ╚═╝ ██║╚██████╔╝███████║
-╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝
-`
+	greetingBanner = `memos`
 )
 
 var (
@@ -179,17 +172,12 @@ func initConfig() {
 }
 
 func printGreetings() {
-	print(greetingBanner)
+	println(greetingBanner)
 	if len(profile.Addr) == 0 {
 		fmt.Printf("Version %s has been started on port %d\n", profile.Version, profile.Port)
 	} else {
 		fmt.Printf("Version %s has been started on address '%s' and port %d\n", profile.Version, profile.Addr, profile.Port)
 	}
-	println("---")
-	println("See more in:")
-	fmt.Printf("👉Website: %s\n", "https://usememos.com")
-	fmt.Printf("👉GitHub: %s\n", "https://github.com/usememos/memos")
-	println("---")
 }
 
 func main() {
